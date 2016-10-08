@@ -26,7 +26,7 @@ module Infisecure
 	  	@min_number = 1000000001
 	    @max_number = 9999999999
 	  	@lnis_sub_code = options[:auth_key] || ""
-	  	@lnis_auth_header = options[:secure_key] || ""
+	  	@lnis_auth_header = options[:secret_key] || ""
 	  	@lnis_api_url = options[:api_url] || ""
 	  	@lnisa2 = @lnis_sub_code[0..5] + "-"+ SecureRandom.uuid 
 	  	@lnisa3 = options[:http_referer] || ""
