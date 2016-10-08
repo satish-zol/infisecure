@@ -1,4 +1,4 @@
-module Infisecure
+module InfisecureApi
   def call
   	begin
 	  	infisecure_api_url = URI.parse(@lnis_api_url)
