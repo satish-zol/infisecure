@@ -22,7 +22,7 @@ module Infisecure
   end
 
 	class Api
-		include Infisecure::InfisecureApi
+		include InfisecureApi
 		def initialize(options={})
 	  	@min_number = 1000000001
 	    @max_number = 9999999999
