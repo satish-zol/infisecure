@@ -10,6 +10,22 @@ module InfisecureApi
       }
       https = Net::HTTP.new(infisecure_api_url.host,infisecure_api_url.port)
       req = Net::HTTP::Post.new(infisecure_api_url.path, header)
+      p @lnis_sub_code
+      p @lnisa2
+      p @lnisa3
+      p @lnisa4
+      p @lnisa5
+      p @lnisa6
+      p @lnisa7
+      p @lnisa8
+      p @lnisa9
+      p @lnisa10
+      p @lnisa11
+      p @lnisa12
+      p @lnisa13
+      p @lnisa14
+      p @lnisa15
+      
       req.body = {
       	lnisa1: @lnis_sub_code,
       	lnisa2: @lnisa2, 
