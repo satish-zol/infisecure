@@ -1,3 +1,3 @@
-lnis_sub_code: "ISESWWI19" #add provided sub_code
-lnis_auth_header: "83982350c812ce56d56ec0f813e51691" # add provided auth header
-lnis_api_url: "eu.infisecure.com/api/process-api-request" # add provided api url
+auth_code: "ISESWWI19" #add provided sub_code
+secret_key: "83982350c812ce56d56ec0f813e51691" # add provided auth header
+api_url: "eu.infisecure.com/api/process-api-request" # add provided api url
