@@ -1,6 +1,25 @@
 require "infisecure/version"
 require 'securerandom'
 module Infisecure
+	class << self
+    attr_accessor :configuration
+  end
+
+  def self.configure
+    self.configuration ||= Configuration.new
+    yield(configuration)
+  end
+
+  class Configuration
+    attr_accessor :auth_code, :secret_key, :api_url
+
+    def initialize(auth_code, secret_key, api_url)
+      @auth_code = auth_code
+      @secret_key = secret_key
+      @api_url = api_url
+    end
+  end
+  
 	class Api
 		include Infisecure
 		def initialize(options={})
@@ -26,22 +45,5 @@ module Infisecure
 	  end
 	end
 
-	class << self
-    attr_accessor :configuration
-  end
-
-  def self.configure
-    self.configuration ||= Configuration.new
-    yield(configuration)
-  end
-
-  class Configuration
-    attr_accessor :auth_code, :secret_key, :api_url
-
-    def initialize
-      @auth_code = ""
-      @secret_key = ""
-      @api_url = ""
-    end
-  end
+	
 end
