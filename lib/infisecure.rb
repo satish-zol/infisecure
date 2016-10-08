@@ -29,7 +29,7 @@ module Infisecure
 	  	@lnis_sub_code = options[:auth_key] || ""
 	  	@lnis_auth_header = options[:secret_key] || ""
 	  	@lnis_api_url = options[:api_url] || ""
-	  	@lnisa2 = @lnis_sub_code[0..5] + "-"+ SecureRandom.uuid 
+	  	@lnisa2 = @lnis_sub_code[0..4] + "-"+ SecureRandom.uuid 
 	  	@lnisa3 = options[:http_referer] || ""
 	  	@lnisa4 = options[:req_uri] || ""
 	  	@lnisa5 = options[:session_id] || ""
