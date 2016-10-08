@@ -8,8 +8,8 @@ module InfisecureApi
       	'Content-Language' => 'en-US',
       	'Content-Encoding' => 'UTF-8'
       }
-      https = Net::HTTP.new(@lnis_api_url.host,@lnis_api_url.port)
-      req = Net::HTTP::Post.new(@lnis_api_url.request_uri, header)
+      https = Net::HTTP.new(infisecure_api_url.host,infisecure_api_url.port)
+      req = Net::HTTP::Post.new(infisecure_api_url.request_uri, header)
       req.body = {
       	lnisa1: @lnis_sub_code,
       	lnisa2: @lnisa2, 
