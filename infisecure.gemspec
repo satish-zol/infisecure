@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{infisecure integration with Ruby on Rails app}
   spec.description   = %q{infisecure app for ruby on rails app}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/satish-zol/infisecure"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
