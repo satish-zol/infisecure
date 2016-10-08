@@ -25,7 +25,7 @@ module InfisecureApi
       p @lnisa13
       p @lnisa14
       p @lnisa15
-      
+
       req.body = {
       	lnisa1: @lnis_sub_code,
       	lnisa2: @lnisa2, 
@@ -43,9 +43,13 @@ module InfisecureApi
       	lnisa14: @lnisa14,
       	lnisa15: @lnisa15
       }
+      p req.body
+
       res = https.request(req)
     rescue Exception => e
 	  	puts "---->>>> Exception found #{e} <<<<----"
+      puts e.message  
+      puts e.backtrace.inspect 
 	  end 
   end
 end
