@@ -1,7 +1,7 @@
 module InfisecureApi
   def call
   	begin
-	  	infisecure_api_url = URI.parse(@lnis_api_url)
+	  	infisecure_api_url = URI.parse("http://"+@lnis_api_url)
       header = {
       	'Content-Type' => 'application/json', 
       	'X-API-Key: ' => @lnis_auth_header,
@@ -10,6 +10,8 @@ module InfisecureApi
       }
       https = Net::HTTP.new(infisecure_api_url.host,infisecure_api_url.port)
       req = Net::HTTP::Post.new(infisecure_api_url.path, header)
+      p infisecure_api_url.host
+      p infisecure_api_url.port
       p @lnis_sub_code
       p @lnisa2
       p @lnisa3
