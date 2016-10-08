@@ -13,13 +13,13 @@ module Infisecure
   class Configuration
     attr_accessor :auth_code, :secret_key, :api_url
 
-    def initialize(auth_code, secret_key, api_url)
+    def initialize(auth_code=nil, secret_key=nil, api_url=nil)
       @auth_code = auth_code
       @secret_key = secret_key
       @api_url = api_url
     end
   end
-  
+
 	class Api
 		include Infisecure
 		def initialize(options={})
