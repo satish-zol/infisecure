@@ -1,5 +1,5 @@
 require "infisecure/version"
-
+require "infisecure/infisecure_api"
 require 'securerandom'
 module Infisecure
 	class << self
