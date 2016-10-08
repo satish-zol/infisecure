@@ -4,7 +4,7 @@ module InfisecureApi
 	  	infisecure_api_url = URI.parse("http://"+@lnis_api_url)
       header = {
       	'Content-Type' => 'application/json', 
-      	'X-API-Key: ' => @lnis_auth_header,
+      	'X-API-Key ' => @lnis_auth_header,
       	'Content-Language' => 'en-US',
       	'Content-Encoding' => 'UTF-8'
       }
