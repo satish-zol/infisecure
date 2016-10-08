@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'infisecure/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "Infisecure"
+  spec.name          = "infisecure"
   spec.version       = Infisecure::VERSION
   spec.authors       = ["Satish"]
   spec.email         = ["zsatish201@gmail.com"]
