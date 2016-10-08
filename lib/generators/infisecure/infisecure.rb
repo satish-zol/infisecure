@@ -1,4 +1,4 @@
-InfisecureCredentials.configure do |config|
+Infisecure.setup do |config|
   file = File.read("#{Rails.root}/config/infisecure.yml")
   file_config = YAML.load(file)
 

@@ -25,4 +25,8 @@ module Infisecure
 			@lnisa15 = "utm_source=pbw&utm_medium=cpc&utm_campaign=pbw"
 	  end
 	end
+
+	def self.setup
+    yield self
+  end
 end
