@@ -26,7 +26,22 @@ module Infisecure
 	  end
 	end
 
-	def self.setup
-    yield self
+	class << self
+    attr_accessor :configuration
+  end
+
+  def self.configure
+    self.configuration ||= Configuration.new
+    yield(configuration)
+  end
+
+  class Configuration
+    attr_accessor :auth_code, :secret_key, :api_url
+
+    def initialize
+      @auth_code = ""
+      @secret_key = ""
+      @api_url = ""
+    end
   end
 end
