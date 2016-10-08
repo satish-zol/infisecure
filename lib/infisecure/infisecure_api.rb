@@ -42,7 +42,7 @@ module InfisecureApi
       	lnisa13: @lnisa13,
       	lnisa14: @lnisa14,
       	lnisa15: @lnisa15
-      }
+      }.to_json
       p req.body
 
       res = https.request(req)
