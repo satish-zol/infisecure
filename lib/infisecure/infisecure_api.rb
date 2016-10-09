@@ -1,13 +1,11 @@
-require 'http-cookie'
 module InfisecureApi
   def call
   	begin
-	  	infisecure_api_url = URI.parse("http://"+@lnis_api_url)
-      jar = HTTP::CookieJar.new
       lnisac0 = 0
       lniscc7 = 7
       lnisec10 = 10
       lnisgc20 = 20
+	  	infisecure_api_url = URI.parse("http://"+@lnis_api_url)
       header = {
       	'Content-Type' => 'application/json', 
       	'X-API-Key ' => @lnis_auth_header,
@@ -33,16 +31,12 @@ module InfisecureApi
       	lnisa14: @lnisa14,
       	lnisa15: @lnisa15
       }.to_json
-      p req.body
-
       res = https.request(req)
-      res.get_fields('Set-Cookie').each do |value|
-        jar.parse(value, req.uri)
-      end
-      fail unless res.code == '302'
+      res.body.upid = @lnisa2
+      res.body.js_data_url = @lnis_js_data_url
+
       cookie_expire_time = Time.now.to_i.floor + 3600*24*365*1 
-      req = Net::HTTP::Get.new(uri + res['Location'])
-      req['Cookie'] = HTTP::Cookie.cookie_value(jar.cookies(uri))
+
       if !cookies[:lnisa11].nil? && !cookies[:lnisa12].nil? && !cookies[:lnisa13].nil? && !cookies[:lnisa14].nil?
         cookies[:lnisa11] = @lnisa11 
         cookies[:lnisa12] = @lnisa12
@@ -64,9 +58,6 @@ module InfisecureApi
         cookies[:lnisa13] = {:value => @lnisa13, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
         cookies[:lnisa14] = {:value => Time.now.to_i.floor, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
       end
-      res = https.request(req)
-      res.body.upid = @lnisa2
-      res.body.js_data_url = @lnis_js_data_url
       return res
     rescue Exception => e
 	  	puts "---->>>> Exception found #{e} <<<<----"
