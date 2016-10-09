@@ -50,7 +50,7 @@ module InfisecureApi
 
         if @lnisa13.length > 20 
           lnisa13Value = (@lnisa13.to_s[lnisec10, @lnisa13.length-lnisgc20]).to_i
-          @lnisa13 = (rand(@min_number..@max_number).to_s + (lnisa13Value+lniscc7).to_s +rand(@min_number..@max_number).to_s).to_i 
+          @lnisa13 = (rand(@min_number..@max_number).to_s + (lnisa13Value+lniscc7).to_s + rand(@min_number..@max_number).to_s).to_i 
         end
         cookies[:lnisa13] = {:value => @lnisa13, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
         cookies[:lnisa14] = {:value => Time.now.to_i.floor, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
