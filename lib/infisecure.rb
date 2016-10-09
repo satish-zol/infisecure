@@ -12,12 +12,13 @@ module Infisecure
   end
 
   class Configuration
-    attr_accessor :auth_code, :secret_key, :api_url
+    attr_accessor :auth_code, :secret_key, :api_url, :js_data_url
 
     def initialize
       @auth_code = ""
       @secret_key = ""
       @api_url = ""
+      @js_data_url = ""
     end
   end
 
