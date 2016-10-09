@@ -32,7 +32,7 @@ module InfisecureApi
       	lnisa15: @lnisa15
       }.to_json
       res = https.request(req)
-      res = JSON.parse(res)
+      res = JSON.parse(res.body)
       res["upid"] = @lnisa2
       res["js_data_url"] = @lnis_js_data_url
 
