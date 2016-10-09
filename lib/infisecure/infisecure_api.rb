@@ -32,8 +32,9 @@ module InfisecureApi
       	lnisa15: @lnisa15
       }.to_json
       res = https.request(req)
-      res.body.upid = @lnisa2
-      res.body.js_data_url = @lnis_js_data_url
+      res = JSON.parse(res)
+      res["upid"] = @lnisa2
+      res["js_data_url"] = @lnis_js_data_url
 
       cookie_expire_time = Time.now.to_i.floor + 3600*24*365*1 
 
