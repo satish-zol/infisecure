@@ -2,6 +2,11 @@ module InfisecureApi
   def call
   	begin
 	  	infisecure_api_url = URI.parse("http://"+@lnis_api_url)
+      jar = HTTP::CookieJar.new
+      lnisac0 = 0
+      lniscc7 = 7
+      lnisec10 = 10
+      lnisgc20 = 20
       header = {
       	'Content-Type' => 'application/json', 
       	'X-API-Key ' => @lnis_auth_header,
@@ -30,6 +35,38 @@ module InfisecureApi
       p req.body
 
       res = https.request(req)
+      res.get_fields('Set-Cookie').each do |value|
+        jar.parse(value, req.uri)
+      end
+      fail unless res.code == '302'
+      cookie_expire_time = Time.now.to_i.floor + 3600*24*365*1 
+      req = Net::HTTP::Get.new(uri + res['Location'])
+      req['Cookie'] = HTTP::Cookie.cookie_value(jar.cookies(uri))
+      if !cookies[:lnisa11].nil? && !cookies[:lnisa12].nil? && !cookies[:lnisa13].nil? && !cookies[:lnisa14].nil?
+        cookies[:lnisa11] = @lnisa11 
+        cookies[:lnisa12] = @lnisa12
+        cookies[:lnisa14] = @lnisa14
+        cookies[:lnisa13] = @lnisa13 
+
+        if @lnisa13.length > 20 
+          lnisa13Value = (@lnisa13.to_s[lnisec10, @lnisa13.length-lnisgc20]).to_i
+          @lnisa13 = (rand(@min_number..@max_number).to_s + (lnisa13Value+lniscc7).to_s +rand(@min_number..@max_number).to_s).to_i 
+        end
+        cookies[:lnisa13] = {:value => @lnisa13, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+        cookies[:lnisa14] = {:value => Time.now.to_i.floor, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+      else
+        @lnisa11 = "a11-" + SecureRandom.uuid
+        @lnisa13 = (rand(@min_number..@max_number).to_s + "0" + rand(@min_number..@max_number).to_s).to_i
+        
+        cookies[:lnisa11] = {:value => @lnisa11, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+        cookies[:lnisa12] = {:value => Time.now.to_i.floor, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+        cookies[:lnisa13] = {:value => @lnisa13, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+        cookies[:lnisa14] = {:value => Time.now.to_i.floor, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+      end
+      res = https.request(req)
+      res.body.upid = @lnisa2
+      res.body.js_data_url = @lnis_js_data_url
+      return res
     rescue Exception => e
 	  	puts "---->>>> Exception found #{e} <<<<----"
       puts e.message  
