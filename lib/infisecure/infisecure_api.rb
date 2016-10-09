@@ -1,3 +1,4 @@
+require 'http-cookie'
 module InfisecureApi
   def call
   	begin
