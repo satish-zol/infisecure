@@ -42,7 +42,7 @@ module Infisecure
 			@lnisa12 = Time.now.to_i
 			@lnisa13 = rand(@min_number..@max_number)
 			@lnisa14 = Time.now.to_i
-			@lnisa15 = "utm_source=pbw&utm_medium=cpc&utm_campaign=pbw"
+			@lnisa15 = ""
 	  end
 	end
 

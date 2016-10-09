@@ -10,23 +10,23 @@ module InfisecureApi
       }
       https = Net::HTTP.new(infisecure_api_url.host,infisecure_api_url.port)
       req = Net::HTTP::Post.new(infisecure_api_url.path, initheader = header)
-      req.body = '{
-      	"lnisa1": "#{@lnis_sub_code}",
-      	"lnisa2": "#{@lnisa2}", 
-      	"lnisa3": "#{@lnisa3}",
-      	"lnisa4": "#{@lnisa4}",
-      	"lnisa5": "#{@lnisa5}",
-      	"lnisa6": "#{@lnisa6}",
-      	"lnisa7": "#{@lnisa7}",
-      	"lnisa8": "#{@lnisa8}",
-      	"lnisa9": "#{@lnisa9}",
-      	"lnisa10": "#{@lnisa10}",
-      	"lnisa11": "#{@lnisa11}",
-      	"lnisa12": "#{@lnisa12}",
-      	"lnisa13": "#{@lnisa13}",
-      	"lnisa14": "#{@lnisa14}",
-      	"lnisa15": "#{@lnisa15}"
-      }'
+      req.body = {
+      	lnisa1: @lnis_sub_code,
+      	lnisa2: @lnisa2, 
+      	lnisa3: @lnisa3,
+      	lnisa4: @lnisa4,
+      	lnisa5: @lnisa5,
+      	lnisa6: @lnisa6,
+      	lnisa7: @lnisa7,
+      	lnisa8: @lnisa8,
+      	lnisa9: @lnisa9,
+      	lnisa10: @lnisa10,
+      	lnisa11: @lnisa11,
+      	lnisa12: @lnisa12,
+      	lnisa13: @lnisa13,
+      	lnisa14: @lnisa14,
+      	lnisa15: @lnisa15
+      }.to_json
       p req.body
 
       res = https.request(req)
