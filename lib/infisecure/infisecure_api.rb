@@ -30,7 +30,7 @@ module InfisecureApi
       res = https.request(req)
       res = JSON.parse(res.body)
       res["upid"] = @lnisa2
-      res["js_data_url"] = @lnis_js_data_url
+      res["js_data_url"] = "http://"+@lnis_js_data_url
       res["lnisa11"] = @lnisa11
       res["lnisa12"] = @lnisa12
       res["lnisa13"] = @lnisa13
