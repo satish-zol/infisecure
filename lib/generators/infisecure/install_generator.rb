@@ -4,7 +4,6 @@ module Infisecure
 	  def copy_initializer_file
 	    copy_file 'infisecure.rb', 'config/initializers/infisecure.rb', :force => true
 	    copy_file 'infisecure.yml', 'config/infisecure.yml', :force => true
-	    File.open(Rail.root)
 	  end
 	end
 end
