@@ -25,6 +25,10 @@ module Infisecure
 	class Api
 		include InfisecureApi
 		def initialize(options={})
+			lnisac0 = 0
+      lniscc7 = 7
+      lnisec10 = 10
+      lnisgc20 = 20
 	  	@min_number = 1000000001
 	    @max_number = 9999999999
 	  	@lnis_sub_code = options[:auth_key] || "" #subscription code
@@ -40,10 +44,15 @@ module Infisecure
 			@lnisa8 = options[:request_method] || "" #request type
 			@lnisa9 = options[:user] || "" #requested by
 			@lnisa10 = Time.now.to_i.floor*1000 # time in miliseconds
-			@lnisa11 = "a11-" + SecureRandom.uuid
-			@lnisa12 = Time.now.to_i.floor #current_time
-			@lnisa13 = options[:lnisa13] || (rand(@min_number..@max_number).to_s + "0"+rand(@min_number..@max_number).to_s).to_i
-			@lnisa14 = Time.now.to_i.floor #current_time
+			@lnisa11 = options[:lnisa11] || "a11-" + SecureRandom.uuid
+			@lnisa12 = options[:lnisa12] || Time.now.to_i.floor #current_time
+			if options[:lnisa13].length > 20 
+        lnisa13Value = (options[:lnisa13].to_s[lnisec10, options[:lnisa13].length-lnisgc20]).to_i
+        @lnisa13 = (rand(@min_number..@max_number).to_s + (lnisa13Value+lniscc7).to_s + rand(@min_number..@max_number).to_s).to_i 
+      else
+				@lnisa13 = (rand(@min_number..@max_number).to_s + "0"+rand(@min_number..@max_number).to_s).to_i
+      end
+			@lnisa14 = options[:lnisa14] || Time.now.to_i.floor #current_time
 			@lnisa15 = options[:query_string] || ""
 	  end
 	end
