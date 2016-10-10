@@ -5,7 +5,7 @@ module Infisecure
     JS_SCRIPT = %q{
       <script>
         var lnisj1 = '<%= @res["upid"] %>';
-        var lnisjs_post_target = '<% @res["js_data_url"] %>';
+        var lnisjs_post_target = '<%= @res["js_data_url"] %>';
         function _lnisj_init_post(_) {
           var lnisjPost;
           lnisjPost = window.XMLHttpRequest ? new XMLHttpRequest : new ActiveXObject(
