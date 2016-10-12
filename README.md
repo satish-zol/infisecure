@@ -1,8 +1,7 @@
 # Infisecure
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/infisecure`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to Infisecure gem! This gem will call the infisecure server with give parameters.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -24,8 +23,7 @@ Or install it yourself as:
 
 	rails g infisecure:install
 
-create a file in app/assets/javascripts/infisecure.js
-add the below code in infisecure.js
+create a file in app/assets/javascripts/infisecure.js and add the below code in infisecure.js
 	
 	window.Infisecure = function(lnisj1, secret_key, lnisjs_post_target) {
 	  function _lnisj_init_post(_) {
@@ -94,7 +92,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/infisecure. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/satish-zol/infisecure. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
