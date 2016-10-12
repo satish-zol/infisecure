@@ -26,6 +26,7 @@ Or install it yourself as:
 
 create a file in app/assets/javascripts/infisecure.js
 add the below code in infisecure.js
+	
 	window.Infisecure = function(lnisj1, secret_key, lnisjs_post_target) {
 	  function _lnisj_init_post(_) {
 	  var lnisjPost;
@@ -49,6 +50,7 @@ add the below code in infisecure.js
 	};
 
 include below code in application.js
+	
 	//= require infisecure
 
 add below code into the controller method e.g. home_controller.rb
@@ -80,11 +82,9 @@ add below code into the controller method e.g. home_controller.rb
     cookies[:lnisa13] = {:value => @res["lnisa13"], :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
     cookies[:lnisa14] = {:value => Time.now.to_i.floor, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
 
-add the below script in your views e.g. index.html.erb
-	<script type="text/javascript">	
-	  var infisecure = new Infisecure('<%= @res["upid"] %>', '<%= Infisecure.configuration.secret_key %>', '<%= @res["js_data_url"] %>' );
-	</script>
-
+add the below code in script tag in your views e.g. index.html.erb
+	
+	var infisecure = new Infisecure('<%= @res["upid"] %>', '<%= Infisecure.configuration.secret_key %>', '<%= @res["js_data_url"] %>' );
 
 ## Development
 
