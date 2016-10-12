@@ -9,12 +9,12 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'infisecure'
+gem 'infisecure', git: 'git@github.com:satish-zol/infisecure.git', branch: 'master'
 ```
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -22,7 +22,69 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+	rails g infisecure:install
+
+create a file in app/assets/javascripts/infisecure.js
+add the below code in infisecure.js
+	window.Infisecure = function(lnisj1, secret_key, lnisjs_post_target) {
+	  function _lnisj_init_post(_) {
+	  var lnisjPost;
+	  lnisjPost = window.XMLHttpRequest ? new XMLHttpRequest : new ActiveXObject(
+	    "Microsoft.XMLHTTP"), lnisjPost
+	    .open("POST", lnisjs_post_target, !0), lnisjPost.setRequestHeader(
+	    "Content-type", "application/json"),
+	    lnisjPost.setRequestHeader("X-API-Key", secret_key), lnisjPost
+	    .send(_)
+	  }
+
+	  var _lnisj1 = "", _lnisj2 = "", _lnisj3 = "", _lnisj4 = "", _lnisj5 = "", _lnisj6 = "";
+	  _lnisj1 = lnisj1;
+	  _lnisj2 = encodeURIComponent(navigator.appCodeName);
+	  _lnisj3 = encodeURIComponent(navigator.appVersion);
+	  _lnisj4 = encodeURIComponent(navigator.cookieEnabled);
+	  _lnisj5 = encodeURIComponent(navigator.platform);
+	  _lnisj6 = encodeURIComponent(navigator.language);
+	  var a ='{"lnisj1":"'+_lnisj1+'", "lnisj2":"'+_lnisj2+'", "lnisj3":"'+_lnisj3+'", "lnisj4":"'+_lnisj4+'", "lnisj5":"'+_lnisj5+'", "lnisj6":"'+_lnisj6+'"}'
+	  return _lnisj_init_post(a);
+	};
+
+include below code in application.js
+	//= require infisecure
+
+add below code into the controller method e.g. home_controller.rb
+	
+	options = {
+      auth_key: Infisecure.configuration.auth_code,
+      secret_key: Infisecure.configuration.secret_key,
+      api_url: Infisecure.configuration.api_url,
+      js_data_url: Infisecure.configuration.js_data_url,
+      http_referer: request.env["HTTP_REFERER"],
+      req_uri: request.env["REQUEST_URI"],
+      session_id: request.session.id,
+      request_ip: request.env["REMOTE_ADDR"],
+      http_user_agent: request.env["HTTP_USER_AGENT"],
+      request_method: request.env["REQUEST_METHOD"],
+      user: 1, #current_user.id
+      query_string: request.query_string,
+      lnisa11: cookies[:lnisa11] || nil,
+      lnisa12: cookies[:lnisa12] || nil,
+      lnisa13: cookies[:lnisa13] || "",
+      lnisa14: cookies[:lnisa11] || nil
+    }
+    i = Infisecure::Api.new options
+    @res = i.call
+    #set cookies with expire time
+    cookie_expire_time = Time.now + 3600*24*365*1 
+    cookies[:lnisa11] = {:value => @res["lnisa11"], :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+    cookies[:lnisa12] = {:value => Time.now.to_i.floor, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+    cookies[:lnisa13] = {:value => @res["lnisa13"], :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+    cookies[:lnisa14] = {:value => Time.now.to_i.floor, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+
+add the below script in your views e.g. index.html.erb
+	<script type="text/javascript">	
+	  var infisecure = new Infisecure('<%= @res["upid"] %>', '<%= Infisecure.configuration.secret_key %>', '<%= @res["js_data_url"] %>' );
+	</script>
+
 
 ## Development
 
