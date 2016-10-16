@@ -22,38 +22,58 @@ module Infisecure
     end
   end
 
+  def self.api(secret_key, user_id, request, cookies)
+  	api = Api.new(secret_key, user_id, request, cookies)
+  	api.call
+  end
+
 	class Api
 		include InfisecureApi
-		def initialize(options={})
+		def initialize(secret_key, user_id, request, cookies)
 			lnisac0 = 0
       lniscc7 = 7
       lnisec10 = 10
       lnisgc20 = 20
 	  	@min_number = 1000000001
 	    @max_number = 9999999999
-	  	@lnis_sub_code = options[:auth_key] || "" #subscription code
-	  	@lnis_auth_header = options[:secret_key] || "" 
-	  	@lnis_api_url = options[:api_url] || ""
-	  	@lnis_js_data_url = options[:js_data_url] || ""
+	  	@lnis_sub_code = Infisecure.configure.auth_code || "" #subscription code
+	  	@lnis_auth_header = secret_key || "" 
+	  	@lnis_api_url = Infisecure.configure.api_url || ""
+	  	#@lnis_js_data_url = options[:js_data_url] || ""
 	  	@lnisa2 = @lnis_sub_code[0..4] + "-"+ SecureRandom.uuid #
-	  	@lnisa3 = options[:http_referer] || "" 
-	  	@lnisa4 = options[:req_uri] || ""
-	  	@lnisa5 = options[:session_id] || ""
-			@lnisa6 = options[:request_ip] || ""
-			@lnisa7 = options[:http_user_agent] || ""
-			@lnisa8 = options[:request_method] || "" #request type
-			@lnisa9 = options[:user] || "" #requested by
+	  	@lnisa3 = request.env["HTTP_REFERER"] || "" 
+	  	@lnisa4 = request.env["REQUEST_URI"] || ""
+	  	@lnisa5 = request.session.id || ""
+			@lnisa6 = request.env["REMOTE_ADDR"] || ""
+			@lnisa7 = request.env["HTTP_USER_AGENT"] || ""
+			@lnisa8 = request.env["REQUEST_METHOD"] || "" #request type
+			@lnisa9 = user_id || "" #requested by
 			@lnisa10 = Time.now.to_i.floor*1000 # time in miliseconds
-			@lnisa11 = options[:lnisa11] || "a11-" + SecureRandom.uuid
-			@lnisa12 = options[:lnisa12] || Time.now.to_i.floor #current_time
-			if options[:lnisa13].length > 20 
-        lnisa13Value = (options[:lnisa13].to_s[lnisec10, options[:lnisa13].length-lnisgc20]).to_i
-        @lnisa13 = (rand(@min_number..@max_number).to_s + (lnisa13Value+lniscc7).to_s + rand(@min_number..@max_number).to_s).to_i 
-      else
+			@lnisa11 = cookies[:lnisa11] || "a11-" + SecureRandom.uuid
+			@lnisa12 = cookies[:lnisa12] || Time.now.to_i.floor #current_time
+			
+			#set cookies expire time
+			cookie_expire_time = Time.now + 3600*24*365*1 
+			
+			if is_cookie_set(cookies[:lnisa11]) && is_cookie_set(cookies[:lnisa12]) && is_cookie_set(cookies[:lnisa13]) && is_cookie_set(cookies[:lnisa14])
+				if cookies[:lnisa13].length > 20 
+	        lnisa13Value = (cookies[:lnisa13].to_s[lnisec10, cookies[:lnisa13].length-lnisgc20]).to_i
+	        @lnisa13 = (rand(@min_number..@max_number).to_s + (lnisa13Value+lniscc7).to_s + rand(@min_number..@max_number).to_s).to_i 
+	        cookies[:lnisa13] = {:value => @lnisa13, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }					
+	      end	
+			else
 				@lnisa13 = (rand(@min_number..@max_number).to_s + "0"+rand(@min_number..@max_number).to_s).to_i
-      end
-			@lnisa14 = options[:lnisa14] || Time.now.to_i.floor #current_time
-			@lnisa15 = options[:query_string] || ""
+				cookies[:lnisa11] = {:value => @lnisa11, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+	    	cookies[:lnisa12] = {:value => Time.now.to_i.floor, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+	    	cookies[:lnisa13] = {:value => @lnisa13, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+	    	cookies[:lnisa14] = {:value => Time.now.to_i.floor, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }    	
+			end
+			@lnisa14 = cookies[:lnisa14] || Time.now.to_i.floor #current_time
+			@lnisa15 =  request.query_string || ""
 	  end
+
+	  def is_cookie_set(cookies)
+			!cookies.nil? && !cookies.empty?
+		end
 	end
 end
