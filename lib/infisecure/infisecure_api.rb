@@ -1,8 +1,7 @@
 module InfisecureApi
   def call
-  	binding.pry
   	begin
-	  	infisecure_api_url = URI.parse("http://"+@lnis_api_url)
+	  	infisecure_api_url = URI.parse("http://"+@lnis_api_url+"/api/process-api-request")
       header = {
       	'Content-Type' => 'application/json', 
       	'X-API-Key ' => @lnis_auth_header,
@@ -35,6 +34,7 @@ module InfisecureApi
       res["lnisa12"] = @lnisa12
       res["lnisa13"] = @lnisa13
       res["lnisa14"] = @lnisa14
+      res["js_data_url"] = "http://eu.infisecure.com/api/process-js-request" 
       return res
     rescue Exception => e
 	  	puts "---->>>> Exception found #{e} <<<<----"

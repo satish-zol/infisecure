@@ -13,25 +13,8 @@ module Infisecure
     yield self
   end
 
-  # def self.configure
-  #   self.configuration ||= Configuration.new
-  #   yield(configuration)
-  # end
-
-  # class Configuration
-  #   attr_accessor :auth_code, :secret_key, :api_url, :js_data_url
-
-  #   def initialize
-  #     @auth_code = ""
-  #     @secret_key = ""
-  #     @api_url = ""
-  #     @js_data_url = ""
-  #   end
-  # end
-
   def self.api(secret_key, user_id, request, cookies)
   	api = Api.new(auth_code, api_url, secret_key, user_id, request, cookies)
-  	
   	api.call
   end
 
