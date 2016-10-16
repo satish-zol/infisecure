@@ -23,66 +23,27 @@ Or install it yourself as:
 
 	rails g infisecure:install
 
-create a file in app/assets/javascripts/infisecure.js and add the below code in infisecure.js
-	
-	window.Infisecure = function(lnisj1, secret_key, lnisjs_post_target) {
-	  function _lnisj_init_post(_) {
-	  var lnisjPost;
-	  lnisjPost = window.XMLHttpRequest ? new XMLHttpRequest : new ActiveXObject(
-	    "Microsoft.XMLHTTP"), lnisjPost
-	    .open("POST", lnisjs_post_target, !0), lnisjPost.setRequestHeader(
-	    "Content-type", "application/json"),
-	    lnisjPost.setRequestHeader("X-API-Key", secret_key), lnisjPost
-	    .send(_)
-	  }
+The generator prompts for the following details to create infisecure_config.rb:
 
-	  var _lnisj1 = "", _lnisj2 = "", _lnisj3 = "", _lnisj4 = "", _lnisj5 = "", _lnisj6 = "";
-	  _lnisj1 = lnisj1;
-	  _lnisj2 = encodeURIComponent(navigator.appCodeName);
-	  _lnisj3 = encodeURIComponent(navigator.appVersion);
-	  _lnisj4 = encodeURIComponent(navigator.cookieEnabled);
-	  _lnisj5 = encodeURIComponent(navigator.platform);
-	  _lnisj6 = encodeURIComponent(navigator.language);
-	  var a ='{"lnisj1":"'+_lnisj1+'", "lnisj2":"'+_lnisj2+'", "lnisj3":"'+_lnisj3+'", "lnisj4":"'+_lnisj4+'", "lnisj5":"'+_lnisj5+'", "lnisj6":"'+_lnisj6+'"}'
-	  return _lnisj_init_post(a);
-	};
+    1. Server name - It lists down the available infisecure servers. Please choose the server closest to your region by selecting the option.
 
-include below code in application.js
-	
-	//= require infisecure
+    2. Sid - Enter the Subscriber Id available in your infisecure account.
 
-add below code into the controller method e.g. home_controller.rb
-	
-	options = {
-      auth_key: Infisecure.configuration.auth_code,
-      secret_key: Infisecure.configuration.secret_key,
-      api_url: Infisecure.configuration.api_url,
-      js_data_url: Infisecure.configuration.js_data_url,
-      http_referer: request.env["HTTP_REFERER"],
-      req_uri: request.env["REQUEST_URI"],
-      session_id: request.session.id,
-      request_ip: request.env["REMOTE_ADDR"],
-      http_user_agent: request.env["HTTP_USER_AGENT"],
-      request_method: request.env["REQUEST_METHOD"],
-      user: 1, #current_user.id
-      query_string: request.query_string,
-      lnisa11: cookies[:lnisa11] || nil,
-      lnisa12: cookies[:lnisa12] || nil,
-      lnisa13: cookies[:lnisa13] || "",
-      lnisa14: cookies[:lnisa11] || nil
-    }
-    i = Infisecure::Api.new options
-    @res = i.call
-    #set cookies with expire time
-    cookie_expire_time = Time.now + 3600*24*365*1 
-    cookies[:lnisa11] = {:value => @res["lnisa11"], :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
-    cookies[:lnisa12] = {:value => Time.now.to_i.floor, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
-    cookies[:lnisa13] = {:value => @res["lnisa13"], :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
-    cookies[:lnisa14] = {:value => Time.now.to_i.floor, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
+Once the above options are entered infisecure_config.rb will be created inside config/initializers folder.
 
-add the below code in script tag in your views e.g. index.html.erb
-	
-	var infisecure = new Infisecure('<%= @res["upid"] %>', '<%= Infisecure.configuration.secret_key %>', '<%= @res["js_data_url"] %>' );
+add below code in application_controller.rb 
+	before_action :call_infisecure
+  def call_infisecure
+  	#required parameter to pass in secret_key, current_user_id, request, cookies
+    @infisecure = Infisecure.api("XXXX", 1, request, cookies)
+  end  
+    
+
+add the below code before body tag end in your layout file e.g. application.html.erb
+	<script type="text/javascript">	
+		var infisecure = new Infisecure('<%= @infisecure["upid"] %>', '<%= @infisecure["secret_key"] %>', '<%= @infisecure["js_data_url"] %>' );
+	</script>
+	<script src="cdn_url"></script>
 
 ## Development
 
