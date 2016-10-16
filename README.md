@@ -31,7 +31,8 @@ The generator prompts for the following details to create infisecure_config.rb:
 
 Once the above options are entered infisecure_config.rb will be created inside config/initializers folder.
 
-add below code in application_controller.rb 
+add below code in application_controller.rb
+
 	before_action :call_infisecure
   def call_infisecure
   	#required parameter to pass in secret_key, current_user_id, request, cookies
@@ -40,6 +41,7 @@ add below code in application_controller.rb
     
 
 add the below code before body tag end in your layout file e.g. application.html.erb
+
 	<script type="text/javascript">	
 		var infisecure = new Infisecure('<%= @infisecure["upid"] %>', '<%= @infisecure["secret_key"] %>', '<%= @infisecure["js_data_url"] %>' );
 	</script>
