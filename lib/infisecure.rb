@@ -63,7 +63,7 @@ module Infisecure
 			cookie_expire_time = Time.now + 3600*24*365*1 
 			
 			if (cookies[:lnisa11] && cookies[:lnisa12] && cookies[:lnisa13] && cookies[:lnisa14])
-				if cookies[:lnisa13].length > 20 
+				if cookies[:lnisa13].to_s.length > 20 
 	        lnisa13Value = (cookies[:lnisa13].to_s[lnisec10, cookies[:lnisa13].length-lnisgc20]).to_i
 	        @lnisa13 = (rand(@min_number..@max_number).to_s + (lnisa13Value+lniscc7).to_s + rand(@min_number..@max_number).to_s).to_i 
 	        cookies[:lnisa13] = {:value => @lnisa13, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }					
