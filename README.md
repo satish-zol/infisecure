@@ -34,6 +34,7 @@ Once the above options are entered infisecure_config.rb will be created inside c
 add below code in application_controller.rb
 
 	before_action :call_infisecure
+	
   def call_infisecure
   	#required parameter to pass in secret_key, current_user_id, request, cookies
     @infisecure = Infisecure.api("XXXX", 1, request, cookies)
