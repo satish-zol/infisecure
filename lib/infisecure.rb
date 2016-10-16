@@ -30,22 +30,22 @@ module Infisecure
   # end
 
   def self.api(secret_key, user_id, request, cookies)
-  	api = Api.new(secret_key, user_id, request, cookies)
+  	api = Api.new(auth_code, api_url, secret_key, user_id, request, cookies)
   	api.call
   end
 
 	class Api
 		include InfisecureApi
-		def initialize(secret_key, user_id, request, cookies)
+		def initialize(auth_code, api_url, secret_key, user_id, request, cookies)
 			lnisac0 = 0
       lniscc7 = 7
       lnisec10 = 10
       lnisgc20 = 20
 	  	@min_number = 1000000001
 	    @max_number = 9999999999
-	  	@lnis_sub_code = @@auth_code || "" #subscription code
+	  	@lnis_sub_code = auth_code || "" #subscription code
 	  	@lnis_auth_header = secret_key || "" 
-	  	@lnis_api_url = @@api_url || ""
+	  	@lnis_api_url = api_url || ""
 	  	#@lnis_js_data_url = options[:js_data_url] || ""
 	  	@lnisa2 = @lnis_sub_code[0..4] + "-"+ SecureRandom.uuid #
 	  	@lnisa3 = request.env["HTTP_REFERER"] || "" 
