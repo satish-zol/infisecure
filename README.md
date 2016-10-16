@@ -35,9 +35,8 @@ add below code in application_controller.rb
 
 	before_action :call_infisecure
 
-In call_infisecure method add below code
-  
-  #required parameter to pass in secret_key, current_user_id, request, cookies
+In call_infisecure method add below code, required parameter to pass in secret_key, current_user_id, request, cookies
+
   @infisecure = Infisecure.api("XXXX", 1, request, cookies)
 
 add the below code before body tag end in your layout file e.g. application.html.erb
