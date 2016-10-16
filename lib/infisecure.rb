@@ -40,9 +40,9 @@ module Infisecure
       lnisgc20 = 20
 	  	@min_number = 1000000001
 	    @max_number = 9999999999
-	  	@lnis_sub_code = Infisecure.configure.auth_code || "" #subscription code
+	  	@lnis_sub_code = @@auth_code || "" #subscription code
 	  	@lnis_auth_header = secret_key || "" 
-	  	@lnis_api_url = Infisecure.configure.api_url || ""
+	  	@lnis_api_url = @@api_url || ""
 	  	#@lnis_js_data_url = options[:js_data_url] || ""
 	  	@lnisa2 = @lnis_sub_code[0..4] + "-"+ SecureRandom.uuid #
 	  	@lnisa3 = request.env["HTTP_REFERER"] || "" 
