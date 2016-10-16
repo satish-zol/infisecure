@@ -23,6 +23,7 @@ module Infisecure
   		end
       puts "Sid: "
       @auth_code = gets.chomp
+      binding.pry
 	    copy_file '../templates/infisecure_config.rb', 'config/initializers/infisecure_config.rb', :force => true
 	    # copy_file 'infisecure.yml', 'config/infisecure.yml', :force => true
 	  end
