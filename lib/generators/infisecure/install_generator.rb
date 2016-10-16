@@ -1,6 +1,10 @@
 module Infisecure
 	class InstallGenerator < Rails::Generators::Base
 	  source_root(File.expand_path(File.dirname(__FILE__)))
+	  # source_root File.expand_path("../templates", __FILE__)
+
+	  desc "Creates infisecure initializer"
+
 	  def copy_initializer_file
 	  	puts "Server name: "
     	puts "    1. Asia/India - sg.infisecure.com"

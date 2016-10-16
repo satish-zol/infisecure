@@ -3,24 +3,28 @@ require "infisecure/infisecure_api"
 require 'securerandom'
 module Infisecure
 	class << self
-    attr_accessor :configuration
+    attr_accessor :configuration, :setup
   end
 
-  def self.configure
-    self.configuration ||= Configuration.new
-    yield(configuration)
+  def self.setup
+    yield self
   end
 
-  class Configuration
-    attr_accessor :auth_code, :secret_key, :api_url, :js_data_url
+  # def self.configure
+  #   self.configuration ||= Configuration.new
+  #   yield(configuration)
+  # end
 
-    def initialize
-      @auth_code = ""
-      @secret_key = ""
-      @api_url = ""
-      @js_data_url = ""
-    end
-  end
+  # class Configuration
+  #   attr_accessor :auth_code, :secret_key, :api_url, :js_data_url
+
+  #   def initialize
+  #     @auth_code = ""
+  #     @secret_key = ""
+  #     @api_url = ""
+  #     @js_data_url = ""
+  #   end
+  # end
 
   def self.api(secret_key, user_id, request, cookies)
   	api = Api.new(secret_key, user_id, request, cookies)
