@@ -6,6 +6,9 @@ module Infisecure
     attr_accessor :configuration, :setup
   end
 
+  mattr_accessor :auth_code
+	mattr_accessor :api_url
+
   def self.setup
     yield self
   end
