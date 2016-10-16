@@ -31,13 +31,13 @@ module Infisecure
 
   def self.api(secret_key, user_id, request, cookies)
   	api = Api.new(auth_code, api_url, secret_key, user_id, request, cookies)
+  	
   	api.call
   end
 
 	class Api
 		include InfisecureApi
 		def initialize(auth_code, api_url, secret_key, user_id, request, cookies)
-			binding.pry
 			lnisac0 = 0
       lniscc7 = 7
       lnisec10 = 10

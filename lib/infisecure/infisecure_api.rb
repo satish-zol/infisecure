@@ -1,5 +1,6 @@
 module InfisecureApi
   def call
+  	binding.pry
   	begin
 	  	infisecure_api_url = URI.parse("http://"+@lnis_api_url)
       header = {
