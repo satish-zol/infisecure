@@ -62,7 +62,7 @@ module Infisecure
 			#set cookies expire time
 			cookie_expire_time = Time.now + 3600*24*365*1 
 			
-			if is_cookie_set(cookies[:lnisa11]) && is_cookie_set(cookies[:lnisa12]) && is_cookie_set(cookies[:lnisa13]) && is_cookie_set(cookies[:lnisa14])
+			if (cookies[:lnisa11] && cookies[:lnisa12] && cookies[:lnisa13] && cookies[:lnisa14])
 				if cookies[:lnisa13].length > 20 
 	        lnisa13Value = (cookies[:lnisa13].to_s[lnisec10, cookies[:lnisa13].length-lnisgc20]).to_i
 	        @lnisa13 = (rand(@min_number..@max_number).to_s + (lnisa13Value+lniscc7).to_s + rand(@min_number..@max_number).to_s).to_i 
@@ -79,8 +79,5 @@ module Infisecure
 			@lnisa15 =  request.query_string || ""
 	  end
 
-	  def is_cookie_set(cookies)
-			!cookies.nil? && !cookies.empty?
-		end
 	end
 end
