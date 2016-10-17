@@ -46,8 +46,13 @@ add the below code before body tag end in your layout file e.g. application.html
 	<script type="text/javascript">	
 		var infisecure = new Infisecure('<%= @infisecure["upid"] %>', '<%= @infisecure["secret_key"] %>', '<%= @infisecure["js_data_url"] %>' );
 	</script>
-	<script src="cdn_url"></script>
+	
+add the infisecure.js file in app/assets/javascripts 
 
+add the below line in app/assets/javascripts/application.js
+
+	// require infisecure
+	
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
