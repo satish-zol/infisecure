@@ -1,4 +1,0 @@
-auth_code: "XXXXXXX" #add provided sub_code
-secret_key: "XXXXXX" # add provided auth header
-api_url: "api.example.com" #don't add http to url
-js_data_url: "js-api.example.com" #don't add http to url

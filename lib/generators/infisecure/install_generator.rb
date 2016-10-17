@@ -23,6 +23,9 @@ module Infisecure
   		end
       puts "Sid: "
       @auth_code = gets.chomp
+
+      puts "Secret key: "
+      @secret_key = gets.chomp
       
 	    template '../templates/infisecure_config.rb', 'config/initializers/infisecure_config.rb', :force => true
 	    # copy_file 'infisecure.yml', 'config/infisecure.yml', :force => true

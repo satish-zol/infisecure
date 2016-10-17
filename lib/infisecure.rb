@@ -8,12 +8,14 @@ module Infisecure
 
   mattr_accessor :auth_code
 	mattr_accessor :api_url
+	mattr_accessor :secret_key
+
 
   def self.setup
     yield self
   end
 
-  def self.api(secret_key, user_id, request, cookies)
+  def self.api(user_id, request, cookies)
   	api = Api.new(auth_code, api_url, secret_key, user_id, request, cookies)
   	api.call
   end
@@ -39,10 +41,10 @@ module Infisecure
 			@lnisa7 = request.env["HTTP_USER_AGENT"] || ""
 			@lnisa8 = request.env["REQUEST_METHOD"] || "" #request type
 			@lnisa9 = user_id || "" #requested by
-			@lnisa10 = Time.now.to_i.floor*1000 # time in miliseconds
+			@lnisa10 = (Time.now.to_i*1000).floor # time in miliseconds
 			@lnisa11 = cookies[:lnisa11] || "a11-" + SecureRandom.uuid
-			@lnisa12 = cookies[:lnisa12] || Time.now.to_i.floor #current_time
-			
+			@lnisa12 = cookies[:lnisa12] || (Time.now.to_i*1000).floor #current_time in miliseconds
+			@lnisa14 = cookies[:lnisa14] || (Time.now.to_i*1000).floor #current_time in miliseconds
 			#set cookies expire time
 			cookie_expire_time = Time.now + 3600*24*365*1 
 			
@@ -59,7 +61,7 @@ module Infisecure
 	    	cookies[:lnisa13] = {:value => @lnisa13, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }
 	    	cookies[:lnisa14] = {:value => Time.now.to_i.floor, :expires => cookie_expire_time, :path => '/', :secure => false, :httponly => true }    	
 			end
-			@lnisa14 = cookies[:lnisa14] || Time.now.to_i.floor #current_time
+			
 			@lnisa15 =  request.query_string || ""
 	  end
 
