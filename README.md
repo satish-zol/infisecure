@@ -51,7 +51,7 @@ add the infisecure.js file in app/assets/javascripts
 
 add the below line in app/assets/javascripts/application.js
 
-	// require infisecure
+	//= require infisecure
 	
 ## Development
 
