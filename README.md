@@ -29,15 +29,17 @@ The generator prompts for the following details to create infisecure_config.rb:
 
     2. Sid - Enter the Subscriber Id available in your infisecure account.
 
+    3. Secret Key - Enter the secret key available in your infisecure account.
+
 Once the above options are entered infisecure_config.rb will be created inside config/initializers folder.
 
 add below code in application_controller.rb
 
 	before_action :call_infisecure
 
-In call_infisecure method add below code, required parameter to pass in secret_key, current_user_id, request, cookies
+In call_infisecure method add below code, required parameter to pass in current_user_id, request, cookies
 	
-	@infisecure = Infisecure.api("XXXX", 1, request, cookies)
+	@infisecure = Infisecure.api(1, request, cookies)
 
 add the below code before body tag end in your layout file e.g. application.html.erb
 
