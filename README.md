@@ -40,7 +40,6 @@ add below code in application_controller.rb
 In call_infisecure method add below code, required parameter to pass in current_user_id, request, cookies
 	
 	@infisecure = Infisecure.api(current_user.id, request, cookies)
-
 	if @infisecure["statusCode"] == 1000
 		logger.debug "allow the user request"		
 	elsif @infisecure["statusCode"] == 1001
