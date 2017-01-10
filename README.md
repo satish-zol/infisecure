@@ -38,8 +38,9 @@ add below code in application_controller.rb
 	before_action :call_infisecure
 
 In call_infisecure method add below code, required parameter to pass in current_user_id, request, cookies
-	
+	```
 	@infisecure = Infisecure.api(current_user.id, request, cookies)
+
 	if @infisecure["statusCode"] == 1000
 		logger.debug "allow the user request"		
 	elsif @infisecure["statusCode"] == 1001
@@ -54,7 +55,7 @@ In call_infisecure method add below code, required parameter to pass in current_
 		logger.debug "Please reach out to infisecure support team for assistance <BR>"
 		logger.debug "Allow the user request"      
  	end	
-
+	```
 add the below code before body tag end in your layout file e.g. application.html.erb
 
 	<script type="text/javascript">	
