@@ -39,7 +39,20 @@ add below code in application_controller.rb
 
 In call_infisecure method add below code, required parameter to pass in current_user_id, request, cookies
 	
-	@infisecure = Infisecure.api(1, request, cookies)
+	@infisecure = Infisecure.api(current_user.id, request, cookies)
+
+	if @infisecure["statusCode"] == 0
+		logger.debug "Allow the user request"		
+	elsif @infisecure["statusCode"] == 2
+		logger.debug "Show captcha to the user"
+  elsif @infisecure["statusCode"] == 3
+  	logger.debug "Block This request"
+  elsif @infisecure["statusCode"] == 4
+  	logger.debug "Feed Fake Data"			
+  elsif @infisecure["statusCode"] == -1
+  	logger.debug "Please reach out to infisecure support team for assistance <BR>"
+  	logger.debug "Allow the user request"      
+	end	
 
 add the below code before body tag end in your layout file e.g. application.html.erb
 
