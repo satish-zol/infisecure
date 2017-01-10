@@ -63,7 +63,7 @@ module Infisecure
 			end
 			
 			@lnisa15 =  request.query_string || ""
-			@lnisa16 = request.host || request.remote_host || ""
+			@lnisa16 = request.remote_host || ""
 			@lnisa17 = ""
 	  end
 
