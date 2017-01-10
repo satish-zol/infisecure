@@ -39,7 +39,7 @@ module Infisecure
 	  	@lnisa5 = request.session.id || ""
 			@lnisa6 = request.env["REMOTE_ADDR"] || ""
 			@lnisa7 = request.env["HTTP_USER_AGENT"] || ""
-			@lnisa8 = request.env["REQUEST_METHOD"] || "" #request type
+			@lnisa8 = (request.env["REQUEST_METHOD"] == "GET" ? "1" : "2") || "" #request type
 			@lnisa9 = user_id || "" #requested by
 			@lnisa10 = (Time.now.to_i*1000).floor # time in miliseconds
 			@lnisa11 = cookies[:lnisa11] || "a11-" + SecureRandom.uuid
@@ -63,7 +63,7 @@ module Infisecure
 			end
 			
 			@lnisa15 =  request.query_string || ""
-			@lnisa16 = request.remote_host || ""
+			@lnisa16 = request.host || request.remote_host || ""
 			@lnisa17 = ""
 	  end
 
