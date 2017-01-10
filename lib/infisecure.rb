@@ -45,7 +45,7 @@ module Infisecure
 			if request.env["REQUEST_METHOD"] == "POST"
 				@lnisa8 = "2"	|| ""#request type
 			end
-			@lnisa9 = user_id.to_ss || "" #requested by
+			@lnisa9 = user_id.to_s || "" #requested by
 			@lnisa10 = (Time.now.to_i*1000).floor.to_s # time in miliseconds
 			@lnisa11 = cookies[:lnisa11] || "a11-" + SecureRandom.uuid
 			@lnisa12 = cookies[:lnisa12] || (Time.now.to_i*1000).floor.to_s #current_time in miliseconds
