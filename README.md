@@ -44,7 +44,7 @@ In call_infisecure method add below code, required parameter to pass in current_
 add the below code before body tag end in your layout file e.g. application.html.erb
 
 	<script type="text/javascript">	
-		var infisecure = new Infisecure('<%= @infisecure["upid"] %>', '<%= @infisecure["secret_key"] %>', '<%= @infisecure["js_data_url"] %>' );
+		var infisecure = new Infisecure('<%= @infisecure["upid"] %>');
 	</script>
 	
 add the infisecure.js file in app/assets/javascripts 

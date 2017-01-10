@@ -25,7 +25,9 @@ module InfisecureApi
       	lnisa12: @lnisa12,
       	lnisa13: @lnisa13,
       	lnisa14: @lnisa14,
-      	lnisa15: @lnisa15
+      	lnisa15: @lnisa15,
+            lnisa16: @lnisa16, #hostname
+            lnisa17: @lnisa17
       }.to_json
       res = https.request(req)
       res = JSON.parse(res.body)
