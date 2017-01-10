@@ -29,9 +29,6 @@ module InfisecureApi
         lnisa16: @lnisa16, #hostname
         lnisa17: @lnisa17
       }.to_json
-      puts "============================="
-      puts req.body
-      puts "============================="
       res = https.request(req)
       res = JSON.parse(res.body)
       res["upid"] = @lnisa2
