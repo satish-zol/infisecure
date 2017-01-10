@@ -39,13 +39,17 @@ module Infisecure
 	  	@lnisa5 = request.session.id || ""
 			@lnisa6 = request.env["REMOTE_ADDR"] || ""
 			@lnisa7 = request.env["HTTP_USER_AGENT"] || ""
-			@lnisa8 = ("1" if request.env["REQUEST_METHOD"] == "GET") || "" #request type
-			@lnisa8 = ("2" if request.env["REQUEST_METHOD"] == "POST") || ""
-			@lnisa9 = user_id || "" #requested by
-			@lnisa10 = (Time.now.to_i*1000).floor # time in miliseconds
+			if request.env["REQUEST_METHOD"] == "GET"
+				@lnisa8 = "1" || ""#request type	
+			end
+			if request.env["REQUEST_METHOD"] == "POST"
+				@lnisa8 = "2"	|| ""#request type
+			end
+			@lnisa9 = user_id.to_ss || "" #requested by
+			@lnisa10 = (Time.now.to_i*1000).floor.to_s # time in miliseconds
 			@lnisa11 = cookies[:lnisa11] || "a11-" + SecureRandom.uuid
-			@lnisa12 = cookies[:lnisa12] || (Time.now.to_i*1000).floor #current_time in miliseconds
-			@lnisa14 = cookies[:lnisa14] || (Time.now.to_i*1000).floor #current_time in miliseconds
+			@lnisa12 = cookies[:lnisa12] || (Time.now.to_i*1000).floor.to_s #current_time in miliseconds
+			@lnisa14 = cookies[:lnisa14] || (Time.now.to_i*1000).floor.to_s #current_time in miliseconds
 			#set cookies expire time
 			cookie_expire_time = Time.now + 3600*24*365*1 
 			
