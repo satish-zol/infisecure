@@ -37,7 +37,7 @@ module Infisecure
 	  	@lnisa3 = request.env["HTTP_REFERER"] || "" 
 	  	@lnisa4 = request.env["REQUEST_URI"] || ""
 	  	@lnisa5 = request.session.id || ""
-			@lnisa6 = request.env["REMOTE_ADDR"] || ""
+			@lnisa6 = request.env["X-Forwarded-For"] || ""
 			@lnisa7 = request.env["HTTP_USER_AGENT"] || ""
 			if request.env["REQUEST_METHOD"] == "GET"
 				@lnisa8 = "1" || ""#request type	

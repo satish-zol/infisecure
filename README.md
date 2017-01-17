@@ -59,7 +59,7 @@ In call_infisecure method add below code, required parameter to pass in current_
 add the below code before body tag end in your layout file e.g. application.html.erb
 
 	<script type="text/javascript">	
-		var infisecure = new Infisecure('<%= @infisecure["upid"] %>');
+		var lnisj1 = new Infisecure('<%= @infisecure["upid"] %>');
 	</script>
 	<script async = "true" type="text/javascript" src="http://www.infisecure.com/assets/js/infisecure.js"></script>
 		
