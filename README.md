@@ -60,8 +60,9 @@ add the below code before body tag end in your layout file e.g. application.html
 
 	<script type="text/javascript">	
 		var lnisj1 = new Infisecure('<%= @infisecure["upid"] %>');
+		var host = new Infisecure('<%= @infisecure["js_data_url"] %>');
 	</script>
-	<script async = "true" type="text/javascript" src="http://www.infisecure.com/assets/js/infisecure.js"></script>
+	<script async = "true" type="text/javascript" src="https://cdn.infisecure.com/assets/js/infisecure.js"></script>
 		
 ## Development
 
